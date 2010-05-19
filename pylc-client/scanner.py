@@ -41,7 +41,7 @@ class Scanner():
 		if DEBUG:
 			print "IP locale:", self.localip
 
-		# Ricerca server nella sottorete di classe C
+		# Ricerca server nella sottorete
 		self.localip = self.localip.split('.')[:-1]
 		
 		if DEBUG:
