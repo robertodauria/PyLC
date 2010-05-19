@@ -70,18 +70,15 @@ class Scan(Thread): # Thread dello scanner
 	
 	def run(self):
 		sock = socket.socket()
+		sock.settimeout(0.01)
 		try:
 			sock.connect((self.addr, self.port))
-			
 			if DEBUG:
 				print "Server trovato:", self.addr
-			
 			self.server = True
-		
 		except socket.error, e:
 			if DEBUG:
 				print "Provato %s, errore: %s" %(self.addr, e)
-			
 			self.server = False
 
 	
