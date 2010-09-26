@@ -28,14 +28,18 @@ VERSION = "0.1a" # Versione del client
 class Radar():
 	
 	def __init__(self):
-		self.timeout = 2   # Tempo di attesa per la risposta, in secondi
+		self.replies = []
+		self.starttime = 0
+		self.ready_to_read = [] 
+		self.ready_to_write = [] 
+		self.on_error = []
+		self.timeout = 1   # Tempo di attesa per la risposta, in secondi
 		
 		# Inizializzazione socket UDP per il broadcast
 		self.rsocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self.rsocket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 	
 	def sendecho(self, port): # Invia una echo request sulla rete
-		self.replies = []
 		
 		self.rsocket.sendto("+00", ('<broadcast>', port))
 		
